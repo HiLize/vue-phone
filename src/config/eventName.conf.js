@@ -1,0 +1,2 @@
+export const SERVER_TIME = 'WECLOUD_EVT_SERVER_TIME'
+
