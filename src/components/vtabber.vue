@@ -34,7 +34,7 @@ export default {
 		let index = this.menu.findIndex(function (data, index, arr) {
 			return data.url === window.location.pathname
 		})
-		// methods中的this.current 与 v-model 配合不能实时的修改current的值,在挂在渲染之前就要给current赋默认值
+		// methods中的this.current 与 v-model 配合不能实时的修改current的值,在挂载渲染之前就要给current赋默认值
 		this.current = index
 	},
 	watch: {

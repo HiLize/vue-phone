@@ -90,10 +90,7 @@
 
             </section>
         </div>
-        <div class="no-activity" v-else>
-            <p>暂无相关活动</p>
-            <span>您可已尝试重新输入搜索词</span>
-        </div>
+        <empty v-else label='暂无相关活动'/>
 
         <!-- 底部菜单 -->
         <van-popup v-model="showStatus" position="bottom" :overlay="true">
