@@ -1,11 +1,12 @@
 <template>
+<navTemplate navbarTitle='搜索' :navbarLeftClick="onCancel" v-bind:hasVtabber='false'>
 <div class="search">
     <div class="input">
-        <van-search v-model.trim="search" show-action @change ="onSearch" @cancel="onCancel" ></van-search>
+        <van-search v-model.trim="search" show-action @change="onSearch" @cancel="onCancel" style="height: '4rem'"></van-search>
     </div>
     
-    <div class="wrapper">
-        <ul class='list' v-if='activities.length'>
+    <div class="wrapper"  v-if='activities.length'>
+        <ul class='list'>
             <!-- <li class='list-li clear' @click='toActivityDetail(item.wid)' v-for="(item,i) in activities" :key='i'>
                 <img :src="item.poster" alt="" class='fl list-img'>
                 <div class='fl list-info'>
@@ -33,20 +34,26 @@
                 </div>
             </li>
         </ul>
-        <div class="no-activity" v-else>
+        
+
+        <!-- <div class="no-activity" v-else>
             <p>暂无相关活动</p>
             <span>您可已尝试重新输入搜索词</span>
-        </div>
+        </div> -->
     </div>
-
+    <empty v-else label='暂无相关活动' subLabel='您可已尝试重新输入搜索词'  imgSrc="@/assets/img/notFind-active@2x.png"/>
 
 </div>
+</navTemplate>
 </template>
 
 <script>
 import { getActivities } from '@/services/index'
+import empty from '@/components/empty'
+import navTemplate from '@/components/navTemplate'
 
 export default {
+    components: { navTemplate, empty },
     data(){
         return {
             search: '',
@@ -81,9 +88,9 @@ export default {
 .search {
     
     .input {
-        position: fixed;
-        top: 0;
-        left: 0;
+        // position: fixed;
+        // top: 0;
+        // left: 0;
         width: 100%;
         height: 2.875rem;
         .search-text {

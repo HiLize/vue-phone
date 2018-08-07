@@ -1,12 +1,13 @@
 <template>
+<navTemplate navbarTitle='校园活动' :navbarLeftClick="onClickLeft" >
     <div class="user">
 
-        <vtabber></vtabber> 
+        <!-- <vtabber></vtabber>  -->
 
         <!-- 导航条 -->
-        <section class='navbar'>
-            <van-nav-bar title="校园活动" left-text="" left-arrow @click-left="onClickLeft"  />
-        </section>
+        <!-- <section class='navbar'> -->
+            <!-- <van-nav-bar title="校园活动" left-text="" left-arrow @click-left="onClickLeft"  fixed /> -->
+        <!-- </section> -->
 
         <!-- user-info -->
         <section class="user-info">
@@ -66,14 +67,16 @@
         </section>
 
     </div>
+    </navTemplate>
 </template>
 
 
 <script>
 import vtabber from '@/components/vtabber'
+import navTemplate from '@/components/navTemplate'
 
 export default {
-    components: { vtabber },
+    components: { vtabber, navTemplate },
     data () {
         return {
             

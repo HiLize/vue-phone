@@ -1,14 +1,15 @@
 <template>
+<navTemplate navbarTitle='校园活动' :navbarLeftClick="onClickLeft" >
     <div class='index'>
 
-        <vtabber></vtabber>
+        <!-- <vtabber></vtabber> -->
 
         <!-- 导航条 -->
-        <div class='navbar'>
-            <van-nav-bar title="校园活动" left-text="" left-arrow @click-left="onClickLeft"  />
-        </div>
+        <!-- <div class='navbar'>
+            <van-nav-bar title="校园活动" left-text="" left-arrow @click-left="onClickLeft" fixed />
+        </div> -->
 
-        <div v-if='!activities.length' class='activity'>
+        <div v-if='!activities.length' class='activity' id="activity">
             <!-- 搜索框 -->
             <div class="search">
                 <div class="search-container" @click="$router.push('/search')">
@@ -85,12 +86,51 @@
                                 <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
                             </div>
                         </li>
+                        <li class='list-li clear' >
+                            <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
+                            <div class='fl list-info'>
+                                <h4>
+                                    <span>标题</span>
+                                    <i style='background: #6AA1FF; '>校</i>
+                                    <i>思</i>
+                                </h4>
+                                <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
+                                <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                                <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
+                            </div>
+                        </li>
+                        <li class='list-li clear' >
+                            <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
+                            <div class='fl list-info'>
+                                <h4>
+                                    <span>标题</span>
+                                    <i style='background: #6AA1FF; '>校</i>
+                                    <i>思</i>
+                                </h4>
+                                <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
+                                <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                                <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
+                            </div>
+                        </li>
+                        <li class='list-li clear' >
+                            <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
+                            <div class='fl list-info'>
+                                <h4>
+                                    <span>标题</span>
+                                    <i style='background: #6AA1FF; '>校</i>
+                                    <i>思</i>
+                                </h4>
+                                <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
+                                <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                                <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
+                            </div>
+                        </li>
                     </ul>
                 </van-list>
 
             </section>
         </div>
-        <empty v-else label='暂无相关活动'/>
+        <empty v-else label='暂无相关活动' imgSrc="@/assets/img/notFind-active@2x.png"/>
 
         <!-- 底部菜单 -->
         <van-popup v-model="showStatus" position="bottom" :overlay="true">
@@ -104,15 +144,17 @@
         </van-popup>
         
     </div>
+    </navTemplate>
 </template>
 
 <script>
 import vtabber from '@/components/vtabber'
 import empty from '@/components/empty'
+import navTemplate from '@/components/navTemplate'
 import { getActivities ,getBanner } from '@/services/index'
 
 export default {
-    components: { vtabber, empty },
+    components: { vtabber, empty, navTemplate },
     data(){
         return {
             statusText: '状态',
@@ -147,9 +189,10 @@ export default {
     methods: {
         initPage(){
             let _this = this
-            window.addEventListener('touchmove',function(){
-                let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-                // console.log(scrollTop)
+            var index = document.getElementById('activity')
+            index.addEventListener('touchmove',function(){
+                let scrollTop = index.scrollTop
+                console.log(scrollTop, _this.top, index.offsetTop)
                 if(scrollTop >= 220) {
                     _this.top = '118px'
                 }
@@ -192,7 +235,8 @@ export default {
 <style lang='scss' scoped>
 .index {
     position: relative;
-    min-height: 100vh;
+    // height: 100%;
+    // min-height: 100vh;
     .navbar {
         width: 100%;
         position: fixed;
@@ -204,7 +248,7 @@ export default {
         }
     }
     .activity {
-        padding: 7.375rem 0 3rem;
+        padding: 4.5rem 0 3rem;
         .search {
             width: 100%;
             height: 4.5rem;
