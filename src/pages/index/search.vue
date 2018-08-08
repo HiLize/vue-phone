@@ -1,52 +1,84 @@
 <template>
-<navTemplate navbarTitle='搜索' :navbarLeftClick="onCancel" v-bind:hasVtabber='false'>
-<div class="search">
-    <div class="input">
-        <van-search v-model.trim="search" show-action @change="onSearch" @cancel="onCancel" style="height: '4rem'"></van-search>
-    </div>
-    
-    <div class="wrapper"  v-if='activities.length'>
-        <ul class='list'>
-            <!-- <li class='list-li clear' @click='toActivityDetail(item.wid)' v-for="(item,i) in activities" :key='i'>
-                <img :src="item.poster" alt="" class='fl list-img'>
-                <div class='fl list-info'>
-                    <h4>
-                        <span>{{ item.topic }}</span>
-                        <i style='background: #6AA1FF; '>校</i>
-                        <i>思</i>
-                    </h4>
-                    <p><img src="@/assets/img/school.png" class='icon-img'>{{ item.organizer }}</p>
-                    <p><img src="@/assets/img/time.png" class='icon-img'>{{ item.hostTime }}</p>
-                    <p><img src="@/assets/img/place.png" class='icon-img'>{{ item.hostPlace }}</p>
+    <navTemplate navbarTitle='搜索' :navbarLeftClick="onCancel" :hasVtabber='false'>
+        <div class="search">
+            <!-- 搜索框 -->
+            <div class="input">
+                <div class="search-text">
+                    <div class="search-info">
+                        <i class="van-icon van-icon-search" />
+                        <div class="search-input">
+                            <input v-model="inputValue" type="type" autocomplete="off" placeholder="活动ID/活动名称" @input="inputOnChange($event)">
+                            <i class="van-icon van-icon-clear van-field__clear" :style="inputValue ? '' : 'display: none'" @click="clearInput"/>
+                        </div>
+                    </div>
                 </div>
-            </li> -->
-            <li class='list-li clear'>
-                <img src="@/assets/img/time.png" class='fl list-img'>
-                <div class='fl list-info'>
-                    <h4>
-                        <span> item.topic </span>
-                        <i style='background: #6AA1FF; '>校</i>
-                        <i>思</i>
-                    </h4>
-                    <p><img src="@/assets/img/school.png" class='icon-img'> item.organizer </p>
-                    <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
-                    <p><img src="@/assets/img/place.png" class='icon-img'> item.hostPlace </p>
-                </div>
-            </li>
-        </ul>
-        
+                <div class="search-cancel" @click="onCancel"><span>取消</span></div>
+            </div>
+            
+            <!-- 搜索列表 -->
+            <div class="wrapper"  v-if='1'>
+                <ul class='list'>
+                    <li class='list-title'>活动</li>
+                    <!-- <li class='list-li clear' @click='toActivityDetail(item.wid)' v-for="(item,i) in activities" :key='i'>
+                        <img :src="item.poster" alt="" class='fl list-img'>
+                        <div class='fl list-info'>
+                            <h4>
+                                <span>{{ item.topic }}</span>
+                                <i style='background: #6AA1FF; '>校</i>
+                                <i>思</i>
+                            </h4>
+                            <p><img src="@/assets/img/school.png" class='icon-img'>{{ item.organizer }}</p>
+                            <p><img src="@/assets/img/time.png" class='icon-img'>{{ item.hostTime }}</p>
+                            <p><img src="@/assets/img/place.png" class='icon-img'>{{ item.hostPlace }}</p>
+                        </div>
+                    </li> -->
+                    <li class='list-li clear'>
+                        <img src="@/assets/img/active01.png" class='fl list-img'>
+                        <div class='fl list-info'>
+                            <h4>
+                                <span> item.topic </span>
+                                <i style='background: #6AA1FF; '>校</i>
+                                <i>思</i>
+                            </h4>
+                            <p><img src="@/assets/img/school.png" class='icon-img'> item.organizer </p>
+                            <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                            <p><img src="@/assets/img/place.png" class='icon-img'> item.hostPlace </p>
+                        </div>
+                    </li>
+                    <li class='list-li clear'>
+                        <img src="@/assets/img/active01.png" class='fl list-img'>
+                        <div class='fl list-info'>
+                            <h4>
+                                <span> item.topic </span>
+                                <i style='background: #6AA1FF; '>校</i>
+                                <i>思</i>
+                            </h4>
+                            <p><img src="@/assets/img/school.png" class='icon-img'> item.organizer </p>
+                            <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                            <p><img src="@/assets/img/place.png" class='icon-img'> item.hostPlace </p>
+                        </div>
+                    </li>
+                    <li class='list-li clear'>
+                        <img src="@/assets/img/active01.png" class='fl list-img'>
+                        <div class='fl list-info'>
+                            <h4>
+                                <span> item.topic </span>
+                                <i style='background: #6AA1FF; '>校</i>
+                                <i>思</i>
+                            </h4>
+                            <p><img src="@/assets/img/school.png" class='icon-img'> item.organizer </p>
+                            <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                            <p><img src="@/assets/img/place.png" class='icon-img'> item.hostPlace </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <empty v-else label='暂无相关活动' subLabel='您可已尝试重新输入搜索词'>
+                <img src="@/assets/img/notSearch-active@2x.png" class='notFindIcon'>
+            </empty>
 
-        <!-- <div class="no-activity" v-else>
-            <p>暂无相关活动</p>
-            <span>您可已尝试重新输入搜索词</span>
-        </div> -->
-    </div>
-    <empty v-else label='暂无相关活动' subLabel='您可已尝试重新输入搜索词'>
-        <img src="@/assets/img/notSearch-active@2x.png" class='notFindIcon'>
-    </empty>
-
-</div>
-</navTemplate>
+        </div>
+    </navTemplate>
 </template>
 
 <script>
@@ -60,6 +92,7 @@ export default {
         return {
             search: '',
             activities: [],
+            inputValue: ''
         }
     },   
     mounted(){
@@ -79,6 +112,12 @@ export default {
         toActivityDetail(){
             this.$router.push('/activityDetail')
         },
+        inputOnChange(event, value) {
+            this.inputValue = event.target.value
+        },
+        clearInput() {
+            this.inputValue = ''
+        }
     }
 }
 </script>
@@ -90,28 +129,108 @@ export default {
 .search {
     background-color: #F2F7FB;
     height: 100%;
+    overflow: auto;
+
+    // 搜索框样式
     .input {
-        // position: fixed;
+        position: fixed;
         // top: 0;
-        // left: 0;
+        left: 0;
         width: 100%;
-        height: 2.875rem;
+        height: 4.5rem;
+        background-color: #ffffff; 
+        box-shadow: inset 0 -0.5px 0 0 #EEEEEE;
+        padding: 0 1.25rem;
+        box-sizing: border-box;
+        // flex 布局
+        display: flex;
+        display: -webkit-flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
         .search-text {
-            font-size: .75rem;
-            padding: 0 1rem;
+            // flex: none;
+            flex-basis: 100%;
+            height: 2.5rem;
+            border-radius: 1.25rem;
+            background-color: #F2F7FB;
+            .search-info {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                height: 100%;
+                padding: 0 0.625rem;
+                box-sizing: border-box;
+            }
+            .search-info i{
+                color:  #959FA9;
+                font-size: 0.75rem;
+                font-weight: bold;
+            }
+            .search-input {
+                position: relative;
+                display: flex;
+                display: -webkit-flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0 4px;
+                box-sizing: border-box;
+                font-size: 0.875rem;
+                color: #4F5C69;
+                input[type=type] {
+                    border: 0;
+                    margin: 0;
+                    padding: 0;
+                    width: 100%;
+                    resize: none;
+                    display: block;
+                    box-sizing: border-box;
+                    background-color: transparent;
+                    color: #4F5C69;
+                    font-size: 0.875rem;
+                }
+                i {
+                    flex: none;
+                    flex-basis: 1.25rem;
+                    padding: 0;
+                    font-size: 0.775rem;
+                }
+            }
+        }
+        .search-cancel {
+            flex: none;
+            flex-basis: 3rem;
+            font-size: 0.875rem;
+            color: #0080ff;
+        }
+        .search-cancel span {
+            display: inline-block;
+            width: 100%;
+            text-align: right;
         }
     }
+
+    // 搜索列表样式
     .wrapper {
-        padding-top: 2.875rem;
+        padding-top: 4.5rem;
+        background-color: #ffffff;
         .list {
-            width: 21rem;
+            width: 100%;
+            box-sizing: border-box;
             margin: 0 auto;
-            padding-top: 1.25rem;
+            padding: 1.25rem 1.25rem 0 1.25rem;
+            .list-title {
+               padding-bottom: 1rem;
+               font-size: 0.875rem;
+               color: #959FA9; 
+            }
             .list-li {
-                margin-bottom: 1rem;
+                padding-bottom: 1.25rem;
                 .list-img {
-                    width: 5.4rem;
-                    height: 5.4rem;
+                    width: 6.75rem;
+                    height: 6.75rem;
                     border-radius: 1.25rem;
                     margin-right: 1rem;
                     border: 1px solid #eee;

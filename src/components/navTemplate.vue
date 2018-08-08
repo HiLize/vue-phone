@@ -1,4 +1,5 @@
 <template>
+    <!-- header nav vtabber 模板 -->
     <div class="nav-template">
         <div class="navbar">
             <van-nav-bar :title="navbarTitle" left-text="" left-arrow @click-left="navbarLeftClick" fixed />
@@ -33,6 +34,7 @@ export default {
 <style lang='scss' scoped>
     .nav-template {
         display: flex;
+        display: -webkit-flex;
         flex-direction: column;
         height: 100vh;
         width: 100%;

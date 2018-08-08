@@ -1,72 +1,64 @@
 <template>
-<navTemplate navbarTitle='校园活动' :navbarLeftClick="onClickLeft" >
-    <div class="user">
-
-        <!-- <vtabber></vtabber>  -->
-
-        <!-- 导航条 -->
-        <!-- <section class='navbar'> -->
-            <!-- <van-nav-bar title="校园活动" left-text="" left-arrow @click-left="onClickLeft"  fixed /> -->
-        <!-- </section> -->
-
-        <!-- user-info -->
-        <section class="user-info">
-            <div class='avator'>
-                <img src="@/assets/img/avator03.png" alt="">
-                <div class="avatar-info">
-                    <h5>张起灵</h5>
-                    <span>01116245</span>
-                </div>
-            </div>
-            <div class="subject">
-                <div><h5>10</h5><p>活动数</p></div>
-                <div><h5>0</h5><p>总分</p></div>
-                <div><h5>60%</h5><p>完成进度</p></div>
-            </div>
-        </section>
-
-        <!-- 签到方式 -->
-        <section class='way'>
-            <div class='way-item' @click="$router.push('/signInActivity')">
-                <img src="@/assets/img/QianDao.png" alt=""><span>活动签到</span>
-            </div>
-            <div class='way-item' @click="$router.push('/activityList')">
-                <img src="@/assets/img/saoyisao.png" alt=""><span>电子票</span>
-            </div>
-            <div class='way-item' @click="$router.push('/schoolReport')">
-                <img src="@/assets/img/seeGrade.png" alt=""><span>查看成绩</span>
-            </div>
-        </section>
-
-        <!-- 最近参加的活动 -->
-        <section class='recent-activity'>
-            <div class="cell">
-                <h4>最近参加的活动</h4>
-                <p><span>更多</span><img src="@/assets/img/more-icon.png" alt=""></p>
-            </div>
-            <ul class='list'>
-                <li class='list-li clear' @click='toActivityList'>
-                    <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
-                    <div class='fl list-info'>
-                        <h4><span>世界和他的悲欢</span> <i style='background: #6AA1FF; '>校</i><i>思</i></h4>
-                        <p><img src="@/assets/img/school.png" class='icon-img'>电器信息学院</p>
-                        <p><img src="@/assets/img/time.png" class='icon-img'>4月21日  17:30 - 21:30</p>
-                        <p><img src="@/assets/img/place.png" class='icon-img'>闻言路A841</p>
+    <navTemplate navbarTitle='校园活动' :navbarLeftClick="onClickLeft" >
+        <div class="user">
+            <!-- user-info -->
+            <section class="user-info">
+                <div class='avator'>
+                    <img src="@/assets/img/avator03.png" alt="">
+                    <div class="avatar-info">
+                        <h5>张起灵</h5>
+                        <span>01116245</span>
                     </div>
-                </li>
-            </ul>
-        </section>
+                </div>
+                <div class="subject">
+                    <div><h5>10</h5><p>活动数</p></div>
+                    <div><h5>0</h5><p>总分</p></div>
+                    <div><h5>60%</h5><p>完成进度</p></div>
+                </div>
+            </section>
 
-        <!-- 素质发展情况 -->
-        <section class='map'>
-            <div class="cell">
-                <h4>素质发展情况</h4>
-                <p>备注</p>
-            </div>
-            <div class="map-content"></div>
-        </section>
+            <!-- 签到方式 -->
+            <section class='way'>
+                <div class='way-item' @click="$router.push('/signInActivity')">
+                    <img src="@/assets/img/QianDao.png" alt=""><span>活动签到</span>
+                </div>
+                <div class='way-item' @click="$router.push('/activityList')">
+                    <img src="@/assets/img/saoyisao.png" alt=""><span>电子票</span>
+                </div>
+                <div class='way-item' @click="$router.push('/schoolReport')">
+                    <img src="@/assets/img/seeGrade.png" alt=""><span>查看成绩</span>
+                </div>
+            </section>
 
-    </div>
+            <!-- 最近参加的活动 -->
+            <section class='recent-activity'>
+                <div class="cell">
+                    <h4>最近参加的活动</h4>
+                    <p><span>更多</span><img src="@/assets/img/more-icon.png" alt=""></p>
+                </div>
+                <ul class='list'>
+                    <li class='list-li clear' @click='toActivityList'>
+                        <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
+                        <div class='fl list-info'>
+                            <h4><span>世界和他的悲欢</span> <i style='background: #6AA1FF; '>校</i><i>思</i></h4>
+                            <p><img src="@/assets/img/school.png" class='icon-img'>电器信息学院</p>
+                            <p><img src="@/assets/img/time.png" class='icon-img'>4月21日  17:30 - 21:30</p>
+                            <p><img src="@/assets/img/place.png" class='icon-img'>闻言路A841</p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 素质发展情况 -->
+            <section class='map'>
+                <div class="cell">
+                    <h4>素质发展情况</h4>
+                    <p>备注</p>
+                </div>
+                <div class="map-content"></div>
+            </section>
+
+        </div>
     </navTemplate>
 </template>
 
@@ -159,6 +151,7 @@ export default {
 .cell {
     height: 3rem;
     display: flex;
+    display: -webkit-flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #eee;
@@ -172,6 +165,7 @@ export default {
         line-height: 1.25rem;
         color: #959FA9;
         display: flex;
+        display: -webkit-flex;
         align-items: center;
         img {
             height: .75rem;

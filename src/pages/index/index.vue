@@ -1,216 +1,208 @@
 <template>
-<navTemplate navbarTitle='校园活动' :navbarLeftClick="onClickLeft" >
-    <div class='index' id="index">
-
-        <!-- <vtabber></vtabber> -->
-
-        <!-- 导航条 -->
-        <!-- <div class='navbar'>
-            <van-nav-bar title="校园活动" left-text="" left-arrow @click-left="onClickLeft" fixed />
-        </div> -->
-
-        <div v-if='!activities.length' class='activity' id="activity">
-            <!-- 搜索框 -->
-            <div class="search">
-                <div class="search-container" @click="$router.push('/search')">
-                    <img src="@/assets/img/search.png" alt=""  />
-                    <span>活动名称</span>
-                </div>
-            </div>
-
-            <!-- 轮播图 -->
-            <!-- <div class='banner'>
-                <van-swipe :autoplay="3000">
-                    <van-swipe-item v-for="(item,i) in bannerList" :key='i'  @click='toActivityDetail(item.wid)'>
-                        <img :src="item.poster" alt="">
-                    </van-swipe-item>
-                    
-                </van-swipe>
-            </div> -->
-            <div class='banner'>
-                <van-swipe :autoplay="3000">
-                    <van-swipe-item>
-                        <img src="@/assets/img/banner01.png" alt="">
-                    </van-swipe-item>
-                    <van-swipe-item>
-                        <img src="@/assets/img/banner02.png" alt="">
-                    </van-swipe-item>
-                    <van-swipe-item>
-                        <img src="@/assets/img/banner03.png" alt="">
-                    </van-swipe-item>
-                    
-                </van-swipe>
-            </div>
-            
-            <!-- select group -->
-            <section class='main'>
-                <div class="selector-group" :style="top?'position: fixed; top:'+top:''">
-                    <div class="selector-group-container">
-                        <section :class="['section', showStatus?'section-active':'']" @click='showStatus=!showStatus'>
-                            <span v-text='statusText'></span><img src="@/assets/img/down.png" class='icon'>
-                        </section>
-                        <section :class="['section', showType?'section-active':'']" @click='showType=!showType'>
-                            <span v-text='typeText'></span><img src="@/assets/img/down.png" class='icon'>
-                        </section>
-                        <section :class="['section', showLevel?'section-active':'']" @click='showLevel=!showLevel'>
-                            <span v-text='levelText'></span><img src="@/assets/img/down.png" class='icon'>
-                        </section>
+    <navTemplate navbarTitle='校园活动' :navbarLeftClick="onClickLeft" >
+        <div class='index' id="index">
+            <div v-if='!activities.length' class='activity' id="activity">
+                <!-- 搜索框 -->
+                <div class="search">
+                    <div class="search-container" @click="$router.push('/search')">
+                        <img src="@/assets/img/search.png" alt=""  />
+                        <span>活动名称</span>
                     </div>
                 </div>
+
+                <!-- 轮播图 -->
+                <!-- <div class='banner'>
+                    <van-swipe :autoplay="3000">
+                        <van-swipe-item v-for="(item,i) in bannerList" :key='i'  @click='toActivityDetail(item.wid)'>
+                            <img :src="item.poster" alt="">
+                        </van-swipe-item>
+                        
+                    </van-swipe>
+                </div> -->
+                <div class='banner'>
+                    <van-swipe :autoplay="3000">
+                        <van-swipe-item>
+                            <img src="@/assets/img/banner01.png" alt="">
+                        </van-swipe-item>
+                        <van-swipe-item>
+                            <img src="@/assets/img/banner02.png" alt="">
+                        </van-swipe-item>
+                        <van-swipe-item>
+                            <img src="@/assets/img/banner03.png" alt="">
+                        </van-swipe-item>
+                        
+                    </van-swipe>
+                </div>
                 
-                <van-list v-model="loading" :finished="finished" @load="onLoad" class='list'>
-                    <ul>
-                        <!-- <li class='list-li clear' @click='toActivityDetail(item.wid)' v-for="(item,i) in activities" :key='i'>
-                            <img :src="item.poster" alt="" class='fl list-img'>
-                            <div class='fl list-info'>
-                                <h4>
-                                    <span>{{ item.topic }}</span>
-                                    <i style='background: #6AA1FF; '>校</i>
-                                    <i>思</i>
-                                </h4>
-                                <p><img src="@/assets/img/school.png" class='icon-img'>{{ item.organizer }}</p>
-                                <p><img src="@/assets/img/time.png" class='icon-img'>{{ item.hostTime }}</p>
-                                <p><img src="@/assets/img/place.png" class='icon-img'>{{ item.hostPlace }}</p>
-                            </div>
-                        </li> -->
-                        <li class='list-li clear' >
-                            <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
-                            <div class='fl list-info'>
-                                <h4>
-                                    <span>标题</span>
-                                    <i style='background: #6AA1FF; '>校</i>
-                                    <i>思</i>
-                                </h4>
-                                <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
-                                <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
-                                <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
-                            </div>
-                        </li>
-                        <li class='list-li clear' >
-                            <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
-                            <div class='fl list-info'>
-                                <h4>
-                                    <span>标题</span>
-                                    <i style='background: #6AA1FF; '>校</i>
-                                    <i>思</i>
-                                </h4>
-                                <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
-                                <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
-                                <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
-                            </div>
-                        </li>
-                        <li class='list-li clear' >
-                            <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
-                            <div class='fl list-info'>
-                                <h4>
-                                    <span>标题</span>
-                                    <i style='background: #6AA1FF; '>校</i>
-                                    <i>思</i>
-                                </h4>
-                                <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
-                                <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
-                                <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
-                            </div>
-                        </li>
-                        <li class='list-li clear' >
-                            <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
-                            <div class='fl list-info'>
-                                <h4>
-                                    <span>标题</span>
-                                    <i style='background: #6AA1FF; '>校</i>
-                                    <i>思</i>
-                                </h4>
-                                <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
-                                <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
-                                <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
-                            </div>
-                        </li>
-                        <li class='list-li clear' >
-                            <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
-                            <div class='fl list-info'>
-                                <h4>
-                                    <span>标题</span>
-                                    <i style='background: #6AA1FF; '>校</i>
-                                    <i>思</i>
-                                </h4>
-                                <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
-                                <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
-                                <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
-                            </div>
-                        </li>
-                        <li class='list-li clear' >
-                            <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
-                            <div class='fl list-info'>
-                                <h4>
-                                    <span>标题</span>
-                                    <i style='background: #6AA1FF; '>校</i>
-                                    <i>思</i>
-                                </h4>
-                                <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
-                                <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
-                                <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
-                            </div>
-                        </li>
-                        <li class='list-li clear' >
-                            <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
-                            <div class='fl list-info'>
-                                <h4>
-                                    <span>标题</span>
-                                    <i style='background: #6AA1FF; '>校</i>
-                                    <i>思</i>
-                                </h4>
-                                <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
-                                <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
-                                <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
-                            </div>
-                        </li>
-                        <li class='list-li clear' >
-                            <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
-                            <div class='fl list-info'>
-                                <h4>
-                                    <span>标题</span>
-                                    <i style='background: #6AA1FF; '>校</i>
-                                    <i>思</i>
-                                </h4>
-                                <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
-                                <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
-                                <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
-                            </div>
-                        </li>
-                        <li class='list-li clear' >
-                            <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
-                            <div class='fl list-info'>
-                                <h4>
-                                    <span>标题</span>
-                                    <i style='background: #6AA1FF; '>校</i>
-                                    <i>思</i>
-                                </h4>
-                                <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
-                                <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
-                                <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
-                            </div>
-                        </li>
-                    </ul>
-                </van-list>
+                <!-- select group -->
+                <section class='main'>
+                    <div class="selector-group" :style="top?'position: fixed; top:'+top:''">
+                        <div class="selector-group-container">
+                            <section :class="['section', showStatus?'section-active':'']" @click='showStatus=!showStatus'>
+                                <span v-text='statusText'></span><img src="@/assets/img/down.png" class='icon'>
+                            </section>
+                            <section :class="['section', showType?'section-active':'']" @click='showType=!showType'>
+                                <span v-text='typeText'></span><img src="@/assets/img/down.png" class='icon'>
+                            </section>
+                            <section :class="['section', showLevel?'section-active':'']" @click='showLevel=!showLevel'>
+                                <span v-text='levelText'></span><img src="@/assets/img/down.png" class='icon'>
+                            </section>
+                        </div>
+                    </div>
+                    
+                    <van-list v-model="loading" :finished="finished" @load="onLoad" class='list'>
+                        <ul>
+                            <!-- <li class='list-li clear' @click='toActivityDetail(item.wid)' v-for="(item,i) in activities" :key='i'>
+                                <img :src="item.poster" alt="" class='fl list-img'>
+                                <div class='fl list-info'>
+                                    <h4>
+                                        <span>{{ item.topic }}</span>
+                                        <i style='background: #6AA1FF; '>校</i>
+                                        <i>思</i>
+                                    </h4>
+                                    <p><img src="@/assets/img/school.png" class='icon-img'>{{ item.organizer }}</p>
+                                    <p><img src="@/assets/img/time.png" class='icon-img'>{{ item.hostTime }}</p>
+                                    <p><img src="@/assets/img/place.png" class='icon-img'>{{ item.hostPlace }}</p>
+                                </div>
+                            </li> -->
+                            <li class='list-li clear' >
+                                <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
+                                <div class='fl list-info'>
+                                    <h4>
+                                        <span>标题</span>
+                                        <i style='background: #6AA1FF; '>校</i>
+                                        <i>思</i>
+                                    </h4>
+                                    <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
+                                    <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                                    <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
+                                </div>
+                            </li>
+                            <li class='list-li clear' >
+                                <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
+                                <div class='fl list-info'>
+                                    <h4>
+                                        <span>标题</span>
+                                        <i style='background: #6AA1FF; '>校</i>
+                                        <i>思</i>
+                                    </h4>
+                                    <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
+                                    <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                                    <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
+                                </div>
+                            </li>
+                            <li class='list-li clear' >
+                                <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
+                                <div class='fl list-info'>
+                                    <h4>
+                                        <span>标题</span>
+                                        <i style='background: #6AA1FF; '>校</i>
+                                        <i>思</i>
+                                    </h4>
+                                    <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
+                                    <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                                    <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
+                                </div>
+                            </li>
+                            <li class='list-li clear' >
+                                <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
+                                <div class='fl list-info'>
+                                    <h4>
+                                        <span>标题</span>
+                                        <i style='background: #6AA1FF; '>校</i>
+                                        <i>思</i>
+                                    </h4>
+                                    <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
+                                    <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                                    <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
+                                </div>
+                            </li>
+                            <li class='list-li clear' >
+                                <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
+                                <div class='fl list-info'>
+                                    <h4>
+                                        <span>标题</span>
+                                        <i style='background: #6AA1FF; '>校</i>
+                                        <i>思</i>
+                                    </h4>
+                                    <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
+                                    <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                                    <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
+                                </div>
+                            </li>
+                            <li class='list-li clear' >
+                                <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
+                                <div class='fl list-info'>
+                                    <h4>
+                                        <span>标题</span>
+                                        <i style='background: #6AA1FF; '>校</i>
+                                        <i>思</i>
+                                    </h4>
+                                    <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
+                                    <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                                    <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
+                                </div>
+                            </li>
+                            <li class='list-li clear' >
+                                <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
+                                <div class='fl list-info'>
+                                    <h4>
+                                        <span>标题</span>
+                                        <i style='background: #6AA1FF; '>校</i>
+                                        <i>思</i>
+                                    </h4>
+                                    <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
+                                    <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                                    <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
+                                </div>
+                            </li>
+                            <li class='list-li clear' >
+                                <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
+                                <div class='fl list-info'>
+                                    <h4>
+                                        <span>标题</span>
+                                        <i style='background: #6AA1FF; '>校</i>
+                                        <i>思</i>
+                                    </h4>
+                                    <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
+                                    <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                                    <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
+                                </div>
+                            </li>
+                            <li class='list-li clear' >
+                                <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
+                                <div class='fl list-info'>
+                                    <h4>
+                                        <span>标题</span>
+                                        <i style='background: #6AA1FF; '>校</i>
+                                        <i>思</i>
+                                    </h4>
+                                    <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
+                                    <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                                    <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </van-list>
 
-            </section>
+                </section>
+            </div>
+            <empty v-else label='暂无相关活动'>
+                <img src="@/assets/img/notFind-active@2x.png" class='notFindIcon'>
+            </empty>
+
+            <!-- 底部菜单 -->
+            <van-popup v-model="showStatus" position="bottom" :overlay="true">
+                <van-picker show-toolbar title="状态" :columns="columns" @cancel="onCancel"  @confirm="onConfirm" />
+            </van-popup>
+            <van-popup v-model="showType" position="bottom" :overlay="true">
+                <van-picker show-toolbar title="分类" :columns="columns" @cancel="onCancel"  @confirm="onConfirm" />
+            </van-popup>
+            <van-popup v-model="showLevel" position="bottom" :overlay="true">
+                <van-picker show-toolbar title="级别" :columns="columns" @cancel="onCancel"  @confirm="onConfirm" />
+            </van-popup>
+            
         </div>
-        <empty v-else label='暂无相关活动'>
-            <img src="@/assets/img/notFind-active@2x.png" class='notFindIcon'>
-        </empty>
-
-        <!-- 底部菜单 -->
-        <van-popup v-model="showStatus" position="bottom" :overlay="true">
-            <van-picker show-toolbar title="状态" :columns="columns" @cancel="onCancel"  @confirm="onConfirm" />
-        </van-popup>
-        <van-popup v-model="showType" position="bottom" :overlay="true">
-            <van-picker show-toolbar title="分类" :columns="columns" @cancel="onCancel"  @confirm="onConfirm" />
-        </van-popup>
-        <van-popup v-model="showLevel" position="bottom" :overlay="true">
-            <van-picker show-toolbar title="级别" :columns="columns" @cancel="onCancel"  @confirm="onConfirm" />
-        </van-popup>
-        
-    </div>
     </navTemplate>
 </template>
 
