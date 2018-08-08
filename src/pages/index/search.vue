@@ -112,7 +112,7 @@ export default {
         toActivityDetail(){
             this.$router.push('/activityDetail')
         },
-        inputOnChange(event, value) {
+        inputOnChange(event) {
             this.inputValue = event.target.value
         },
         clearInput() {
