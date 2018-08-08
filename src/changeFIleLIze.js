@@ -28,6 +28,7 @@
     (1) 重写搜索框元素样式
     (2) 绑定inputOnChange方法，实时监控input内容变化
     (3) 绑定clearInput方法，一键清空input内容
+    (4) 最近搜索样式
 */
 
 /*

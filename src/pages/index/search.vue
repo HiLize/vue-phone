@@ -15,8 +15,21 @@
                 <div class="search-cancel" @click="onCancel"><span>取消</span></div>
             </div>
             
+            <!-- 最近搜索 -->
+            <div  class="wrapper" v-if="inputValue === ''">
+                <div class="recentlySearch">
+                    <div class="recentlySearchTitle">
+                        <span>最近搜索</span>
+                        <i class="van-icon van-icon-delete van-field__delete" @click="onCancel"/>
+                    </div>
+                    <p v-for="(item,i) in recentlyData" :key='i'>
+                        {{item}}
+                    </p>
+                </div>
+            </div>
+            
             <!-- 搜索列表 -->
-            <div class="wrapper"  v-if='1'>
+            <div class="wrapper"  v-else-if='activities.length'>
                 <ul class='list'>
                     <li class='list-title'>活动</li>
                     <!-- <li class='list-li clear' @click='toActivityDetail(item.wid)' v-for="(item,i) in activities" :key='i'>
@@ -92,7 +105,14 @@ export default {
         return {
             search: '',
             activities: [],
-            inputValue: ''
+            inputValue: '',
+            recentlyData: [
+                '孟美岐',
+                '王菊',
+                '校园篮球赛',
+                '陈霖',
+                '创造101'
+            ]
         }
     },   
     mounted(){
@@ -216,6 +236,41 @@ export default {
     .wrapper {
         padding-top: 4.5rem;
         background-color: #ffffff;
+        // 最近搜索
+        .recentlySearch {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            align-content: space-around;
+            align-items: center;
+            padding: 0.5rem 0.75rem;
+            box-sizing: border-box;
+            .recentlySearchTitle {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                height: 1.25rem;
+                line-height: 1.25rem;
+                margin: 0.5rem;
+                font-size: 0.875rem;
+                color: #959FA9;
+            }
+            p {
+                height: 2rem;
+                line-height: 2rem;
+                width: auto;
+                padding:0 1rem;
+                margin: 0.5rem;
+                border-radius: 1.25rem;
+                background-color: #F2F7FB;
+                font-size: 0.875rem;
+                color: #4F5C69;
+            }
+        }
+
+        // 搜索结果列表
         .list {
             width: 100%;
             box-sizing: border-box;
