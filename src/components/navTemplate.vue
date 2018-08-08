@@ -43,7 +43,7 @@ export default {
         }
         .content {
             flex-basis: 100%;
-            overflow: auto;
+            overflow: hidden;
         }
         .vtabber {
             flex: none;

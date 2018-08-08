@@ -41,7 +41,9 @@
             <span>您可已尝试重新输入搜索词</span>
         </div> -->
     </div>
-    <empty v-else label='暂无相关活动' subLabel='您可已尝试重新输入搜索词'  imgSrc="@/assets/img/notFind-active@2x.png"/>
+    <empty v-else label='暂无相关活动' subLabel='您可已尝试重新输入搜索词'>
+        <img src="@/assets/img/notSearch-active@2x.png" class='notFindIcon'>
+    </empty>
 
 </div>
 </navTemplate>
@@ -86,7 +88,8 @@ export default {
 
 <style scoped lang='scss'>
 .search {
-    
+    background-color: #F2F7FB;
+    height: 100%;
     .input {
         // position: fixed;
         // top: 0;
@@ -167,6 +170,10 @@ export default {
                 color: #2d2f33;
             }
         }
+    }
+    .notFindIcon {
+        width: 8.1875rem;
+        height: 6.625rem;
     }
     
 }

@@ -1,6 +1,6 @@
 <template>
 <navTemplate navbarTitle='校园活动' :navbarLeftClick="onClickLeft" >
-    <div class='index'>
+    <div class='index' id="index">
 
         <!-- <vtabber></vtabber> -->
 
@@ -125,12 +125,79 @@
                                 <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
                             </div>
                         </li>
+                        <li class='list-li clear' >
+                            <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
+                            <div class='fl list-info'>
+                                <h4>
+                                    <span>标题</span>
+                                    <i style='background: #6AA1FF; '>校</i>
+                                    <i>思</i>
+                                </h4>
+                                <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
+                                <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                                <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
+                            </div>
+                        </li>
+                        <li class='list-li clear' >
+                            <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
+                            <div class='fl list-info'>
+                                <h4>
+                                    <span>标题</span>
+                                    <i style='background: #6AA1FF; '>校</i>
+                                    <i>思</i>
+                                </h4>
+                                <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
+                                <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                                <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
+                            </div>
+                        </li>
+                        <li class='list-li clear' >
+                            <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
+                            <div class='fl list-info'>
+                                <h4>
+                                    <span>标题</span>
+                                    <i style='background: #6AA1FF; '>校</i>
+                                    <i>思</i>
+                                </h4>
+                                <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
+                                <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                                <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
+                            </div>
+                        </li>
+                        <li class='list-li clear' >
+                            <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
+                            <div class='fl list-info'>
+                                <h4>
+                                    <span>标题</span>
+                                    <i style='background: #6AA1FF; '>校</i>
+                                    <i>思</i>
+                                </h4>
+                                <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
+                                <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                                <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
+                            </div>
+                        </li>
+                        <li class='list-li clear' >
+                            <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
+                            <div class='fl list-info'>
+                                <h4>
+                                    <span>标题</span>
+                                    <i style='background: #6AA1FF; '>校</i>
+                                    <i>思</i>
+                                </h4>
+                                <p><img src="@/assets/img/school.png" class='icon-img'>.organizer </p>
+                                <p><img src="@/assets/img/time.png" class='icon-img'> item.hostTime </p>
+                                <p><img src="@/assets/img/place.png" class='icon-img'>item.hostPlace</p>
+                            </div>
+                        </li>
                     </ul>
                 </van-list>
 
             </section>
         </div>
-        <empty v-else label='暂无相关活动' imgSrc="@/assets/img/notFind-active@2x.png"/>
+        <empty v-else label='暂无相关活动'>
+            <img src="@/assets/img/notFind-active@2x.png" class='notFindIcon'>
+        </empty>
 
         <!-- 底部菜单 -->
         <van-popup v-model="showStatus" position="bottom" :overlay="true">
@@ -189,10 +256,9 @@ export default {
     methods: {
         initPage(){
             let _this = this
-            var index = document.getElementById('activity')
-            index.addEventListener('touchmove',function(){
-                let scrollTop = index.scrollTop
-                console.log(scrollTop, _this.top, index.offsetTop)
+            var index = document.getElementById('index')
+            index.addEventListener('scroll',function(e){
+                let scrollTop = e.target.scrollTop
                 if(scrollTop >= 220) {
                     _this.top = '118px'
                 }
@@ -235,7 +301,8 @@ export default {
 <style lang='scss' scoped>
 .index {
     position: relative;
-    // height: 100%;
+    height: 100%;
+    overflow: auto;
     // min-height: 100vh;
     .navbar {
         width: 100%;
@@ -386,6 +453,10 @@ export default {
         
     }
     
+    .notFindIcon {
+        width: 10.125rem;
+        height: 6.25rem;
+    }
     .no-activity {
         width: 100%;
         height: 7.5rem;

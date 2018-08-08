@@ -182,7 +182,10 @@ export default {
 
 .user {
     background: #f2f7fb;
-    padding-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    overflow: auto;
+    height: 100%;
+    box-sizing: border-box;
     .user-info {
         @include sectionBlock(10.25rem);
         .avator {
