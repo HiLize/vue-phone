@@ -6,5 +6,5 @@ export const mineActivities = params => {
 }
 
 export const getActivityDetail = params => {
-    return get(ACTIVITY_DETAIL, params)
+    return get(`${ACTIVITY_DETAIL}?wid=${params}`)
 }

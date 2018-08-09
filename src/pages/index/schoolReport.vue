@@ -57,10 +57,9 @@ export default {
             report: {}
         }
     },
-    mountedt(){
-        getScore.then(data => {
-            console.log(data)
-            // this.report = data
+    mounted(){
+        getScore().then(data => {
+            this.report = data
         })
     },
     methods: {

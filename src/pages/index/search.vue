@@ -22,9 +22,18 @@
                         <span>最近搜索</span>
                         <i class="van-icon van-icon-delete van-field__delete" @click="onCancel"/>
                     </div>
-                    <p v-for="(item,i) in recentlyData" :key='i'>
+                    <p v-for="(item,i) in recentlyData" :key='i'  @click="searchByKeyword(item)">
                         {{item}}
                     </p>
+                </div>
+            </div>
+
+            <!-- 搜索联想 -->
+            <div  class="wrapper" v-else-if="inputValue !== ''">
+                <div class="connectSearch">
+                    <div class='connectInfo' v-for="(info, i) in connectSearchData" :key="i" @click="searchByKeyword(info)">
+                        {{info.first}}<span class='match'>{{info.match}}</span>{{info.last}}
+                    </div>
                 </div>
             </div>
             
@@ -112,6 +121,12 @@ export default {
                 '校园篮球赛',
                 '陈霖',
                 '创造101'
+            ],
+            connectSearchData: [
+                {first: '', match: '吴', last: '侬软语忆乡音'},
+                {first: '', match: '吴', last: '世勋教授系列讲座'},
+                {first: '', match: '吴', last: '一凡'},
+                {first: '什么什么', match: '吴一凡', last: ''}
             ]
         }
     },   
@@ -137,6 +152,9 @@ export default {
         },
         clearInput() {
             this.inputValue = ''
+        },
+        searchByKeyword(keyword) {
+            console.log(keyword)
         }
     }
 }
@@ -236,16 +254,21 @@ export default {
     .wrapper {
         padding-top: 4.5rem;
         background-color: #ffffff;
-        // 最近搜索
-        .recentlySearch {
+        @mixin searchContainer {
             width: 100%;
             display: flex;
             flex-wrap: wrap;
             align-items: baseline;
             align-content: space-around;
             align-items: center;
-            padding: 0.5rem 0.75rem;
             box-sizing: border-box;
+            font-size: 0.875rem;
+            color: #4F5C69;
+        }
+        // 最近搜索
+        .recentlySearch {
+            @include searchContainer;
+            padding: 0.5rem 0.75rem;            
             .recentlySearchTitle {
                 display: flex;
                 align-items: center;
@@ -254,7 +277,6 @@ export default {
                 height: 1.25rem;
                 line-height: 1.25rem;
                 margin: 0.5rem;
-                font-size: 0.875rem;
                 color: #959FA9;
             }
             p {
@@ -265,8 +287,26 @@ export default {
                 margin: 0.5rem;
                 border-radius: 1.25rem;
                 background-color: #F2F7FB;
-                font-size: 0.875rem;
-                color: #4F5C69;
+            }
+            
+        }
+        // 搜索联想
+        .connectSearch {
+            @include searchContainer;
+            padding: 0 0.75rem;
+            .connectInfo {
+                width: 100%;
+                height: 3.125rem;
+                line-height: 3.125rem;
+                box-sizing: border-box;
+                padding: 0 0.5rem;
+                box-shadow: inset 0 -0.5px 0 0 #EEEEEE;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                .match {
+                    color: #0080ff;
+                }
             }
         }
 

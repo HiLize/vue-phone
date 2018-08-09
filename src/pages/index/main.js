@@ -9,10 +9,9 @@ import Vant from 'vant'
 import 'vant/lib/vant-css/index.css'
 import echarts from 'echarts'
 
-Vue.prototype.$echarts = echarts 
+Vue.prototype.$echarts = echarts
 
 Vue.use(Vant)
-
 
 router.afterEach((to, from) => {
 	if (to && to.meta && to.meta.title) {

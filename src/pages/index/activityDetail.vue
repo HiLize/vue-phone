@@ -16,10 +16,10 @@
                     <span style=''>{{ detail.credit }}学分</span>
                 </section>
                 <section class='info-detail'>
-                    <!-- <p><img src="@/assets/img/time.png" class='icon-img'>{{ detail.hostTime }}</p>
+                    <p><img src="@/assets/img/time.png" class='icon-img'>{{ detail.hostTime }}</p>
                     <p><img src="@/assets/img/place.png" class='icon-img'>{{ detail.hostPlace }}</p>
                     <p><img src="@/assets/img/area.png" class='icon-img'>活动对象: {{ detail.activityTarget }}</p> 
-                    -->
+                   
                 </section>
                 
             </section>
@@ -102,15 +102,14 @@ export default {
         }
     },
     mounted(){
-        // let wid = this.$route.params.wid
-        // getActivityDetail(wid).then(data => {
-        //     console.log(data)
-        //     // this.detail = data 
-        // })
+        let wid = this.$route.params.wid
+        getActivityDetail(wid).then(data => {
+            this.detail = data 
+        })
 
-        this.$dialog.alert({
-            message: '弹窗内容'
-        });
+        // this.$dialog.alert({
+        //     message: '弹窗内容'
+        // });
     },
     methods: {
         onClickLeft() {
@@ -187,7 +186,8 @@ export default {
             p {
                 font-size: .875rem;
                 color: #959FA9;
-                line-height: 1.4;
+                line-height: 1.25rem;
+                margin: 0.25rem 0;
                 padding-left: 1.125rem;
                 position: relative;
                 display: -webkit-box;

@@ -314,7 +314,6 @@ export default {
                             height: .625rem;
                             margin-right: .5rem;
                             display: inline-block;
-                            vertical-align: middle;
                         }
                         p {
                             font-size: .65rem;

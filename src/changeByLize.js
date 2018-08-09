@@ -8,7 +8,7 @@
 
 /*
 2、修改文件使用navTemplate.vue 模板
-    indexe.vue / search.vue / user.vue / schoolReport.vue / activityList.vue / activityDetail.vue
+    indexe.vue / search.vue / user.vue / schoolReport.vue / activityList.vue / activityDetail.vue / signInActivity.vue
 */
 
 /*
@@ -30,6 +30,7 @@
     (2) 绑定inputOnChange方法，实时监控input内容变化
     (3) 绑定clearInput方法，一键清空input内容
     (4) 最近搜索样式
+    (5) 搜索联想样式(匹配单样式)
 */
 
 /*
@@ -51,5 +52,5 @@
 /*
 8、activityDetail.vue修改内容
     (1) user.js中添加两个post接口方法 userSign/userCancelSign，用于报名活动和取消报名。
-    (2) 给<我要参加>添加button，测试调用接口
+    (2) 给<我要参加>button添加click，测试调用接口
 */

@@ -1,54 +1,52 @@
 <template>
-    <div class="activity-list">
-
-        <!-- 导航条 -->
-        <section class='navbar'>
-            <van-nav-bar title="可签到活动" left-text="" left-arrow @click-left="onClickLeft"  />
-        </section>
-
-        <!-- 列表 -->
-        <div class="wrapper">
-            <ul class='list' v-if='list.length'>
-                <li v-for="(item,i) in list" :key='i'  @click='toActivityDetail(item.wid)'>
-                    <div class="info">
-                        <h4>{{ item.topic }}</h4>
-                        <p><img src="@/assets/img/time.png" alt="">{{ item.hostTime }}</p>
-                        <p><img src="@/assets/img/place.png" alt="">{{ item.hostPlace }}</p>
-                    </div>
-                    <div class="btn" @click.stop='show=true; showKeyboard=true'>签到</div>
-                </li>
-                <li @click='scanning'>扫一扫</li>
-            </ul>
-            <div class='no-activity' v-else>
-                <img src="../../assets/img/active01.png" alt="">
-                <p>暂无相关活动</p>
+    <navTemplate navbarTitle='可签到活动' :navbarLeftClick="onClickLeft" :hasVtabber='false' >
+        <div class="activity-list">
+            <!-- 列表 -->
+            <div class="wrapper">
+                <ul class='list' v-if='list.length'>
+                    <li v-for="(item,i) in list" :key='i'  @click='toActivityDetail(item.wid)'>
+                        <div class="info">
+                            <h4>{{ item.topic }}</h4>
+                            <p><img src="@/assets/img/time.png" alt="">{{ item.hostTime }}</p>
+                            <p><img src="@/assets/img/place.png" alt="">{{ item.hostPlace }}</p>
+                        </div>
+                        <div class="btn" @click.stop='show=true; showKeyboard=true'>签到</div>
+                    </li>
+                    <li @click='scanning'>扫一扫</li>
+                </ul>
+                <div class='no-activity' v-else>
+                    <img src="../../assets/img/active01.png" alt="">
+                    <p>暂无相关活动</p>
+                </div>
             </div>
-        </div>
-        
-        <!-- modal -->
-        <div class="modal" v-show='show'>
-            <div class='password-input'>
-                <h5>输入验证码</h5>
-                <p class='info-p'>活动名称：世界和他的悲欢</p>
-                <van-password-input :value="value" :length='4' @focus="showKeyboard = true" />
-                <em>验证码有误，请仔细核对</em>
-                <div class='sure' @click='confirmPsw'>确定</div>
+            
+            <!-- modal -->
+            <div class="modal" v-show='show'>
+                <div class='password-input'>
+                    <h5>输入验证码</h5>
+                    <p class='info-p'>活动名称：世界和他的悲欢</p>
+                    <van-password-input :value="value" :length='4' @focus="showKeyboard = true" />
+                    <em>验证码有误，请仔细核对</em>
+                    <div class='sure' @click='confirmPsw'>确定</div>
+                </div>
+                <section class="keyboard">
+                    <van-number-keyboard :show="showKeyboard"  @input="onInput" @delete="onDelete" @blur="showKeyboard = false"/>
+                </section>
             </div>
-            <section class="keyboard">
-                <van-number-keyboard :show="showKeyboard"  @input="onInput" @delete="onDelete" @blur="showKeyboard = false"/>
-            </section>
-        </div>
 
-        
-    </div>
+            
+        </div>
+    </navTemplate>
 </template>
 
 
 <script>
+import navTemplate from '@/components/navTemplate'
 import { mineActivities, } from '@/services/activity'
 import { setRightButton } from '@/utils/sdk'
 
 export default {
+    components: { navTemplate },
     data() {
         return {
             show: false,
@@ -61,8 +59,7 @@ export default {
     },
     mounted(){
         mineActivities().then(data => {
-            console.log(data)
-            // this.list = data
+            this.list = data.activities
         })
     },
     methods: {
@@ -96,8 +93,10 @@ export default {
 <style scoped lang='scss'>
 .activity-list {
     background: #f2f7fb;
+    height: 100%;
+    overflow: auto;
     .list {
-        height: calc(100vh - 2.875rem);
+        // height: calc(100vh - 2.875rem);
         box-sizing: border-box;
         padding: 0 1.25rem;
         background: #fff;
@@ -127,7 +126,6 @@ export default {
                 img {
                     height: .625rem;
                     margin-right: .5rem;
-                    vertical-align: middle;
                 }
             }
             .btn {
