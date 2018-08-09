@@ -12,11 +12,7 @@ export default {
     name: 'empty',
     props: {
         label: String,
-        subLabel: String,
-        imgSrc: String
-    },
-    created () {
-        console.log(this.subLabel, 'sub', this.imgSrc)
+        subLabel: String
     }
 }
 </script>

@@ -1,98 +1,96 @@
 <template>
-    <div class="activity-detail">
-
-        <!-- 导航条 -->
-        <section class='navbar'>
-            <van-nav-bar title="活动详情" left-text="" left-arrow @click-left="onClickLeft"  />
-        </section>
-
-        <!-- 静态大图 -->
-        <section class="big-img">
-            <img :src="detail.poster" alt="">
-        </section>
-
-        <!-- info -->
-        <section class="info">
-            <h4>{{ detail.topic }}</h4>
-            <section class="btn-group">
-                <span style='background: #6AA1FF'>{{ detail.level }}</span>
-                <span style='background: #FFB56A'>{{ detail.signInType }}</span>
-                <span style='background: #5DDAA1'>实践实习</span>
-                <span style=''>{{ detail.credit }}学分</span>
+    <navTemplate navbarTitle='活动详情' :navbarLeftClick="onClickLeft" :hasVtabber='false'>
+        <div class="activity-detail">
+            <!-- 静态大图 -->
+            <section class="big-img">
+                <img :src="detail.poster" alt="" />
             </section>
-            <section class='info-detail'>
-                <!-- <p><img src="@/assets/img/time.png" class='icon-img'>{{ detail.hostTime }}</p>
-                <p><img src="@/assets/img/place.png" class='icon-img'>{{ detail.hostPlace }}</p>
-                <p><img src="@/assets/img/area.png" class='icon-img'>活动对象: {{ detail.activityTarget }}</p> 
-                -->
-            </section>
-            
-        </section>
 
-        <!-- step -->
-        <section class="step">
-            <section>
-                <!-- active-color='#0080FF' -->
-                <van-steps :active="active" >
-                    <van-step></van-step>
-                    <van-step>报名</van-step>
-                    <van-step>签到</van-step>
-                    <van-step>结果维护</van-step>
-                    <van-step>结束</van-step>
-                    <van-step></van-step>
-                </van-steps>
+            <!-- info -->
+            <section class="info">
+                <h4>{{ detail.topic }}</h4>
+                <section class="btn-group">
+                    <span style='background: #6AA1FF'>{{ detail.level }}</span>
+                    <span style='background: #FFB56A'>{{ detail.signInType }}</span>
+                    <span style='background: #5DDAA1'>实践实习</span>
+                    <span style=''>{{ detail.credit }}学分</span>
+                </section>
+                <section class='info-detail'>
+                    <!-- <p><img src="@/assets/img/time.png" class='icon-img'>{{ detail.hostTime }}</p>
+                    <p><img src="@/assets/img/place.png" class='icon-img'>{{ detail.hostPlace }}</p>
+                    <p><img src="@/assets/img/area.png" class='icon-img'>活动对象: {{ detail.activityTarget }}</p> 
+                    -->
+                </section>
+                
             </section>
-            <div class="join">
-                <div class='ticket'>
-                    <h4>{{ detail.remaining }}</h4>
-                    <p>余票 / 张</p>
+
+            <!-- step -->
+            <section class="step">
+                <section>
+                    <!-- active-color='#0080FF' -->
+                    <van-steps :active="active" >
+                        <van-step></van-step>
+                        <van-step>报名</van-step>
+                        <van-step>签到</van-step>
+                        <van-step>结果维护</van-step>
+                        <van-step>结束</van-step>
+                        <van-step></van-step>
+                    </van-steps>
+                </section>
+                <div class="join">
+                    <div class='ticket'>
+                        <h4>{{ detail.remaining }}</h4>
+                        <p>余票 / 张</p>
+                    </div>
+                    <div class="btn"> 我要参加 </div>
                 </div>
-                <div class="btn"> 我要参加 </div>
-            </div>
-        </section>
-
-        <!-- cell -->
-        <section class="cell">
-            <img src="@/assets/img/school-active.png" alt="">
-            <h4 class='cell-title'>{{ detail.organizer }}</h4>
-        </section>
-
-        <!-- 活动详情 -->
-        <div class="activity-content">
-            <section class="cell-main">
-                <img src="@/assets/img/activityDetail.png" alt="">
-                <h4 class='cell-title'>活动详情</h4>
             </section>
-            <div class="line"></div>
-            <div class="detail">
-                <p>{{ detail.description }}</p>
-                <img src="@/assets/img/activityInfo.png" alt="img" />
+
+            <!-- cell -->
+            <section class="cell">
+                <img src="@/assets/img/school-active.png" alt="">
+                <h4 class='cell-title'>{{ detail.organizer }}</h4>
+            </section>
+
+            <!-- 活动详情 -->
+            <div class="activity-content">
+                <section class="cell-main">
+                    <img src="@/assets/img/activityDetail.png" alt="">
+                    <h4 class='cell-title'>活动详情</h4>
+                </section>
+                <div class="line"></div>
+                <div class="detail">
+                    <p>{{ detail.description }}</p>
+                    <img src="@/assets/img/activityInfo.png" alt="img" />
+                </div>
             </div>
-        </div>
 
-        <!-- 人员列表 -->
-        <div class='person-list'>
-            <!-- {{ detail.attends.length }} -->
-            <p>20人参加</p>
-            <ul>
-                <li @click='toUser' v-for="(item,i) in detail.attends" :key='i'>
-                    <img src="@/assets/img/avator01.png" alt="avator">
-                    <span>{{ item.userName }}</span>
-                </li>
-                <li class='more'>
-                    <img src="@/assets/img/more.png" alt="avator">
-                    <span>更多</span>
-                </li>
-            </ul>
-        </div>
+            <!-- 人员列表 -->
+            <div class='person-list'>
+                <!-- {{ detail.attends.length }} -->
+                <p>20人参加</p>
+                <ul>
+                    <li @click='toUser' v-for="(item,i) in detail.attends" :key='i'>
+                        <img src="@/assets/img/avator01.png" alt="avator">
+                        <span>{{ item.userName }}</span>
+                    </li>
+                    <li class='more'>
+                        <img src="@/assets/img/more.png" alt="avator">
+                        <span>更多</span>
+                    </li>
+                </ul>
+            </div>
 
-    </div>
+        </div>
+    </navTemplate>
 </template>
 
 <script>
 import { getActivityDetail } from '@/services/activity'
+import navTemplate from '@/components/navTemplate'
 
 export default {
+    components: { navTemplate },
     data(){
         return {
             active: 1,
@@ -122,7 +120,7 @@ export default {
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang='scss' scoped >
 @mixin mb10 {
     margin-bottom: .625rem;
 }
@@ -130,6 +128,10 @@ export default {
 .activity-detail {
     background: #f2f7fb;
     padding-bottom: 1.25rem;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 100%;
+    overflow: auto;
     .big-img {
         width: 100%;
         height: 13.5rem;
@@ -332,8 +334,6 @@ export default {
         }
     }
 }
-
-
 </style>
 
 

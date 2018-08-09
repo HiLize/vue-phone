@@ -8,19 +8,20 @@
 
 /*
 2、修改文件使用navTemplate.vue 模板
-    indexe.vue / search.vue / user.vue / schoolReport.vue / 
+    indexe.vue / search.vue / user.vue / schoolReport.vue / activityList.vue /activityDetail.vue
 */
 
-/* 
+/*
 3、修改文件使用empty.vue模板
     indexe.vue / search.vue
 */
 
 /*
 4、index.vue修改内容
-    this.initPage()上拉吸顶
-    由于使用了navTemplate.vue模板，该方法的获取scrollTop失效，先修改为通过id=index的标签，来获取scrollTop
+    (1) this.initPage()上拉吸顶
+    (2) 由于使用了navTemplate.vue模板，该方法的获取scrollTop失效，先修改为通过id=index的标签，来获取scrollTop
     判断后操作top
+    (3) activitiesDetail path 添加wid
 */
 
 /*
@@ -36,3 +37,13 @@
     底部文件袋样式大小样式，并添加阴影
 */
 
+/*
+6、activityList.vue修改内容
+    (1) 查看电子票按钮，@click.stop阻止冒泡到li的@click
+    (2) 给activitiesDetail 方法传递wid, 但是该页面方法抓取到的数据，没有wid信息????
+*/
+
+/*
+7、user.vue修改内容
+    (1) 将toActivityList方法，放到最近参加活动的<更多>的点击事件上
+*/

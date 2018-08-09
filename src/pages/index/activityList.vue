@@ -1,52 +1,51 @@
 <template>
-    <div class="activity-list">
+    <navTemplate navbarTitle='最近参加的活动' :navbarLeftClick="onClickLeft" :hasVtabber='false'>
 
-        <!-- 导航条 -->
-        <section class='navbar'>
-            <van-nav-bar title="最近参加的活动" left-text="" left-arrow @click-left="onClickLeft"  />
-        </section>
+        <div class="activity-list">
+            <!-- 列表 -->
+            <ul class='list'>
+                <li v-for="(item,i) in list" :key='i'  @click='toActivityDetail(item.wid)'>
+                    <div class="info">
+                        <h4>{{ item.topic }}</h4>
+                        <p><img src="@/assets/img/time.png" alt="">{{ item.hostTime }}</p>
+                        <p><img src="@/assets/img/place.png" alt="">{{ item.hostPlace }}</p>
+                    </div>
+                    <div class="btn"  @click.stop='showModal=true'>查看电子票</div>
+                </li>
+            </ul>
 
-        <!-- 列表 -->
-        <ul class='list'>
-            <li v-for="(item,i) in list" :key='i'  @click='toActivityDetail(item.wid)'>
-                <div class="info">
-                    <h4>{{ item.topic }}</h4>
-                    <p><img src="@/assets/img/time.png" alt="">{{ item.hostTime }}</p>
-                    <p><img src="@/assets/img/place.png" alt="">{{ item.hostPlace }}</p>
+            <!-- modal -->
+            <div class="modal" v-show='showModal'>
+                <div class="modal-container">
+                    <h3 class='title'>国学大百科趣味知识问答南京理工大学站</h3>
+                    <div class='content'>
+                        <section class='content-item'>
+                            <dl><dt>姓名</dt><dd>陈都灵</dd></dl>
+                            <dl><dt>学号</dt><dd>011164982</dd></dl>
+                        </section>
+                        <section class='content-item'>
+                            <dl><dt>时间</dt><dd>4月21日 17:30-21:30</dd></dl>
+                        </section>
+                        <section class='content-item'>
+                            <dl><dt>地点</dt><dd>文苑路D5262</dd></dl>
+                        </section>
+                    </div>
+                    <img src="@/assets/img/close.png" alt="" class='modal-icon' @click='showModal=false'>
                 </div>
-                <div class="btn"  @click='showModal=true'>查看电子票</div>
-            </li>
-            
-        </ul>
-
-        <!-- modal -->
-        <div class="modal" v-show='showModal'>
-            <div class="modal-container">
-                <h3 class='title'>国学大百科趣味知识问答南京理工大学站</h3>
-                <div class='content'>
-                    <section class='content-item'>
-                        <dl><dt>姓名</dt><dd>陈都灵</dd></dl>
-                        <dl><dt>学号</dt><dd>011164982</dd></dl>
-                    </section>
-                    <section class='content-item'>
-                        <dl><dt>时间</dt><dd>4月21日 17:30-21:30</dd></dl>
-                    </section>
-                    <section class='content-item'>
-                        <dl><dt>地点</dt><dd>文苑路D5262</dd></dl>
-                    </section>
-                </div>
-                <img src="@/assets/img/close.png" alt="" class='modal-icon' @click='showModal=false'>
             </div>
         </div>
-    </div>
+
+    </navTemplate>
 </template>
 
 
 <script>
-import { mineActivities, } from '@/services/activity'
+import { mineActivities } from '@/services/activity'
+import navTemplate from '@/components/navTemplate'
 
 
 export default {
+    components: { navTemplate },
     data() {
         return {
             list: [],
@@ -55,13 +54,13 @@ export default {
     },
     mounted(){
         mineActivities().then(data => {
-            console.log(data)
-            // this.list = data
+            console.log(data, 'activities list')
+            this.list = data.activities
         })
     },
     methods: {
-        toActivityDetail(){
-            this.$router.push('/activityDetail')
+        toActivityDetail(wid){
+            this.$router.push(`/activityDetail/${wid}`)
         },
 
         onClickLeft(){
@@ -74,8 +73,9 @@ export default {
 <style scoped lang='scss'>
 .activity-list {
     background: #f2f7fb;
+    height: 100%;
+    overflow: auto;
     .list {
-        height: calc(100vh - 2.875rem);
         box-sizing: border-box;
         padding: 0 1.25rem;
         background: #fff;

@@ -34,10 +34,10 @@
             <section class='recent-activity'>
                 <div class="cell">
                     <h4>最近参加的活动</h4>
-                    <p><span>更多</span><img src="@/assets/img/more-icon.png" alt=""></p>
+                    <p @click='toActivityList'><span>更多</span><img src="@/assets/img/more-icon.png" alt=""></p>
                 </div>
                 <ul class='list'>
-                    <li class='list-li clear' @click='toActivityList'>
+                    <li class='list-li clear'>
                         <img src="@/assets/img/active01.png" alt="" class='fl list-img'>
                         <div class='fl list-info'>
                             <h4><span>世界和他的悲欢</span> <i style='background: #6AA1FF; '>校</i><i>思</i></h4>
@@ -64,11 +64,10 @@
 
 
 <script>
-import vtabber from '@/components/vtabber'
 import navTemplate from '@/components/navTemplate'
 
 export default {
-    components: { vtabber, navTemplate },
+    components: { navTemplate },
     data () {
         return {
             
