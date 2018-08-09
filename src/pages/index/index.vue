@@ -1,6 +1,7 @@
 <template>
     <navTemplate navbarTitle='校园活动' :navbarLeftClick="onClickLeft" >
         <div class='index' id="index">
+            <!-- 活动内容 -->
             <div v-if='activities.length' class='activity' id="activity">
                 <!-- 搜索框 -->
                 <div class="search">
@@ -71,6 +72,7 @@
 
                 </section>
             </div>
+            <!-- 无活动空白页 -->
             <empty v-else label='暂无相关活动'>
                 <img src="@/assets/img/notFind-active@2x.png" class='notFindIcon'>
             </empty>

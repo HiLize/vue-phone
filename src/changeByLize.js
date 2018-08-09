@@ -4,6 +4,7 @@
  1、创建公共组件
      components/navTemplate.vue 头部导航和底部导航，固定不动，底部导航可选有无
      components/empty.vue 空白提示页，可以传递title和subtitle两类文字，插入img等不同的icon
+     components/activityButton.vue 活动参加/取消 button 公共组件
 */
 
 /*
@@ -39,18 +40,19 @@
 */
 
 /*
-6、activityList.vue修改内容
+7、activityList.vue修改内容
     (1) 查看电子票按钮，@click.stop阻止冒泡到li的@click
     (2) 给activitiesDetail 方法传递wid, 但是该页面方法抓取到的数据，没有wid信息????
 */
 
 /*
-7、user.vue修改内容
+8、user.vue修改内容
     (1) 将toActivityList方法，放到最近参加活动的<更多>的点击事件上
 */
 
 /*
-8、activityDetail.vue修改内容
+9、activityDetail.vue修改内容
     (1) user.js中添加两个post接口方法 userSign/userCancelSign，用于报名活动和取消报名。
     (2) 给<我要参加>button添加click，测试调用接口
+    (3) 使用activityButton 的button组建
 */

@@ -2,7 +2,7 @@
     <div class='emptyContent'>
         <slot></slot>
         
-        <p class="label">{{label}}</p>
+        <p class="label" v-if="typeof label !== 'undefined'">{{label}}</p>
         <p class='subLabel' v-if="typeof subLabel !== 'undefined'">{{subLabel}}</p>
     </div>
 </template>

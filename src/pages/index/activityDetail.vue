@@ -42,7 +42,10 @@
                         <h4>{{ detail.remaining }}</h4>
                         <p>余票 / 张</p>
                     </div>
-                    <div class="btn" @click="isSign ? userSignActivity() : userCancelSignActivity()"> {{isSign ? '我要参加' : '取消报名'}} </div>
+                    <activityButton :onClickBut="isSign ? userSignActivity : userCancelSignActivity"
+                        :label="isSign ? '我要参加' : '取消报名'"
+                        type='normal'
+                    />
                 </div>
             </section>
 
@@ -88,11 +91,12 @@
 <script>
 import { getActivityDetail } from '@/services/activity'
 import navTemplate from '@/components/navTemplate'
+import activityButton from '@/components/activityButton'
 
 import { userSign, userCancelSign } from '@/services/user'
 
 export default {
-    components: { navTemplate },
+    components: { navTemplate, activityButton },
     data(){
         return {
             active: 1,
@@ -239,17 +243,6 @@ export default {
                     color: #959FA9;
                 }
             }
-        }
-        .btn {
-            width: 10.375rem;
-            height: 2.5rem;
-            background: #0080FF;
-            box-shadow: 0 8px 14px -6px rgba(0,128,255,0.40);
-            border-radius: 1.25rem;
-            text-align: center;
-            line-height: 2.5rem;
-            color: #fff;
-            font-size: 1rem;
         }
     }
     .cell {
