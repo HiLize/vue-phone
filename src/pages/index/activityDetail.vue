@@ -42,7 +42,7 @@
                         <h4>{{ detail.remaining }}</h4>
                         <p>余票 / 张</p>
                     </div>
-                    <div class="btn"> 我要参加 </div>
+                    <div class="btn" @click="isSign ? userSignActivity() : userCancelSignActivity()"> {{isSign ? '我要参加' : '取消报名'}} </div>
                 </div>
             </section>
 
@@ -89,13 +89,16 @@
 import { getActivityDetail } from '@/services/activity'
 import navTemplate from '@/components/navTemplate'
 
+import { userSign, userCancelSign } from '@/services/user'
+
 export default {
     components: { navTemplate },
     data(){
         return {
             active: 1,
             detail: {},
-            showMore: false
+            showMore: false,
+            isSign: true
         }
     },
     mounted(){
@@ -115,6 +118,22 @@ export default {
         },
         toUser(){
             this.$router.push('/user')
+        },
+        // 用户报名参加活动
+        userSignActivity() {
+            this.isSign = false
+            let wid = this.$route.params.wid
+            userSign(wid).then(data => {
+                console.log(data, 'userSign return data')
+            })
+        },
+        // 用户取消报名活动
+        userCancelSignActivity() {
+            this.isSign = true
+            let wid = this.$route.params.wid
+            userCancelSign(wid).then(data => {
+                console.log(data, 'userCancelSign return data')
+            })
         }
     }
 }

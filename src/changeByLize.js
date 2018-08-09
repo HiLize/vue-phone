@@ -8,7 +8,7 @@
 
 /*
 2、修改文件使用navTemplate.vue 模板
-    indexe.vue / search.vue / user.vue / schoolReport.vue / activityList.vue /activityDetail.vue
+    indexe.vue / search.vue / user.vue / schoolReport.vue / activityList.vue / activityDetail.vue
 */
 
 /*
@@ -46,4 +46,10 @@
 /*
 7、user.vue修改内容
     (1) 将toActivityList方法，放到最近参加活动的<更多>的点击事件上
+*/
+
+/*
+8、activityDetail.vue修改内容
+    (1) user.js中添加两个post接口方法 userSign/userCancelSign，用于报名活动和取消报名。
+    (2) 给<我要参加>添加button，测试调用接口
 */
