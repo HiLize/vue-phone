@@ -54,5 +54,5 @@
 9、activityDetail.vue修改内容
     (1) user.js中添加两个post接口方法 userSign/userCancelSign，用于报名活动和取消报名。
     (2) 给<我要参加>button添加click，测试调用接口
-    (3) 使用activityButton 的button组建
+    (3) 使用activityButton 的button组件
 */
